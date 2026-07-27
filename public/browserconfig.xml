@@ -1,0 +1,26 @@
+<!-- public/browserconfig.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="/mstile-150x150.png"/>
+            <TileColor>#214696</TileColor>
+        </tile>
+        <badge>
+            <polling-uri src="https://visa.traavelbug.com/badge.xml"/>
+            <polling-interval>60</polling-interval>
+            <frequency>30</frequency>
+        </badge>
+        <notification>
+            <polling-uri src="https://visa.traavelbug.com/notification.xml"/>
+            <polling-interval>3600</polling-interval>
+            <frequency>1</frequency>
+        </notification>
+    </msapplication>
+    <CustomTab>
+        <Color>#214696</Color>
+        <Icons>
+            <Icon src="/favicon.ico" />
+        </Icons>
+    </CustomTab>
+</browserconfig>
