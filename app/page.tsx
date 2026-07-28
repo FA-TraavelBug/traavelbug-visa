@@ -1,4 +1,3 @@
-// src/app/page.tsx - Updated to include VisaForm in Hero
 import { Hero } from "@/components/Hero";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -12,24 +11,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Visa Services for International Travel | Traavel Bug",
-  description: "Expert visa assistance for tourists, business travellers and families. Get professional guidance on visa applications, document preparation and travel planning.",
-  keywords: "visa services, travel visa, international travel, visa assistance, document guidance, visa application, tourist visa, business visa",
-  alternates: {
-    canonical: "https://visa.traavelbug.com",
-  },
-  openGraph: {
-    title: "Visa Services for International Travel | Traavel Bug",
-    description: "Expert visa assistance for tourists, business travellers and families. Get professional guidance on visa applications, document preparation and travel planning.",
-    url: "https://visa.traavelbug.com",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Traavel Bug - Premium Visa Services",
-      },
-    ],
-  },
+  description: "Expert visa assistance for tourists, business travellers and families.",
 };
 
 export default function Home() {

@@ -1,341 +1,45 @@
-// src/components/Footer.tsx
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
-  Youtube,
-  Globe,
-  ArrowUpRight,
-  Shield,
-  FileText,
-  AlertCircle
-} from "lucide-react";
 import { Container } from "./ui/Container";
-import { cn } from "@/lib/utils";
-
-interface SocialIconProps {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}
-
-interface QuickLinkProps {
-  href: string;
-  label: string;
-}
-
-const quickLinks: QuickLinkProps[] = [
-  { href: "#services", label: "Visa Services" },
-  { href: "#why-choose-us", label: "Why Choose Us" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#faqs", label: "FAQs" },
-  { href: "#contact", label: "Contact" },
-];
-
-const socialLinks: SocialIconProps[] = [
-  { 
-    href: "https://facebook.com/traavelbug", 
-    icon: <Facebook className="w-5 h-5" />, 
-    label: "Facebook" 
-  },
-  { 
-    href: "https://instagram.com/traavelbug", 
-    icon: <Instagram className="w-5 h-5" />, 
-    label: "Instagram" 
-  },
-  { 
-    href: "https://linkedin.com/company/traavelbug", 
-    icon: <Linkedin className="w-5 h-5" />, 
-    label: "LinkedIn" 
-  },
-  { 
-    href: "https://youtube.com/traavelbug", 
-    icon: <Youtube className="w-5 h-5" />, 
-    label: "YouTube" 
-  },
-];
-
-const SocialIcon = ({ href, icon, label }: SocialIconProps) => {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className={cn(
-        "w-10 h-10 rounded-full",
-        "bg-white/5 hover:bg-white/10",
-        "flex items-center justify-center",
-        "text-gray-400 hover:text-white",
-        "border border-white/5 hover:border-white/10",
-        "transition-all duration-300",
-        "hover:scale-110",
-        "focus:outline-none focus:ring-2 focus:ring-primary/50"
-      )}
-      whileHover={{ y: -2 }}
-      transition={{ duration: 0.2 }}
-    >
-      {icon}
-    </motion.a>
-  );
-};
-
-const QuickLink = ({ href, label }: QuickLinkProps) => {
-  return (
-    <motion.li
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
-    >
-      <Link
-        href={href}
-        className={cn(
-          "text-gray-400 hover:text-white",
-          "transition-colors duration-300",
-          "text-sm",
-          "flex items-center gap-1.5 group",
-          "focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
-        )}
-      >
-        <span className="w-1 h-1 rounded-full bg-primary/30 group-hover:bg-primary transition-colors duration-300" />
-        {label}
-        <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-0.5 group-hover:translate-x-0.5" />
-      </Link>
-    </motion.li>
-  );
-};
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer 
-      className="relative bg-[#0F172A] overflow-hidden"
-      role="contentinfo"
-      aria-label="Footer"
-    >
-      {/* Background Decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -right-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-20 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
-      </div>
-
-      <Container className="relative z-10">
-        {/* Main Footer Content */}
-        <div className="pt-16 pb-12 lg:pt-20 lg:pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            {/* Column 1 - Logo & About */}
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Logo */}
-              <Link 
-                href="/" 
-                className="inline-flex items-center gap-2 group"
-                aria-label="Traavel Bug Home"
-              >
-                <div className="relative w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-                  <Globe className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <span className="font-heading font-bold text-xl tracking-tight text-white">
-                    Traavel
-                  </span>
-                  <span className="font-heading font-bold text-xl tracking-tight text-primary">
-                    Bug
-                  </span>
-                </div>
-              </Link>
-
-              {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                Traavel Bug provides personalised visa assistance and travel planning 
-                to help travellers explore international destinations with confidence.
-              </p>
-
-              {/* Trust Badge */}
-              <div className="flex items-center gap-2 pt-2">
-                <div className="flex items-center gap-1.5 text-xs text-gray-500">
-                  <Shield className="w-3.5 h-3.5 text-primary" />
-                  <span>Trusted & Verified</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Column 2 - Quick Links */}
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <h3 className="text-white font-heading font-semibold text-sm tracking-wide uppercase">
-                Quick Links
-              </h3>
-              <nav aria-label="Quick links">
-                <ul className="space-y-3">
-                  {quickLinks.map((link) => (
-                    <QuickLink key={link.href} {...link} />
-                  ))}
-                </ul>
-              </nav>
-            </motion.div>
-
-            {/* Column 3 - Contact */}
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-white font-heading font-semibold text-sm tracking-wide uppercase">
-                Contact
-              </h3>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="tel:+919876543210"
-                    className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300 text-sm group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
-                      <Phone className="w-4 h-4" />
-                    </div>
-                    <span>+91 98765 43210</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:support@traavelbug.com"
-                    className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300 text-sm group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                    <span>support@traavelbug.com</span>
-                  </a>
-                </li>
-                <li className="flex items-start gap-3 text-gray-400 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <span className="leading-relaxed">
-                    Mumbai, Maharashtra<br />
-                    India
-                  </span>
-                </li>
+    <footer className="bg-gray-900 text-white">
+      <Container>
+        <div className="py-12 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="font-heading font-bold text-xl mb-4">Traavel Bug</h3>
+              <p className="text-gray-400 text-sm">Professional visa assistance for international travel.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link href="#services" className="hover:text-white">Visa Services</Link></li>
+                <li><Link href="#how-it-works" className="hover:text-white">How It Works</Link></li>
+                <li><Link href="#faqs" className="hover:text-white">FAQs</Link></li>
               </ul>
-            </motion.div>
-
-            {/* Column 4 - Social */}
-            <motion.div
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <h3 className="text-white font-heading font-semibold text-sm tracking-wide uppercase">
-                Connect With Us
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {socialLinks.map((social) => (
-                  <SocialIcon key={social.label} {...social} />
-                ))}
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li>📱 +91 98765 43210</li>
+                <li>✉️ support@traavelbug.com</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Follow Us</h4>
+              <div className="flex gap-4 text-gray-400">
+                <span className="hover:text-white cursor-pointer">📘</span>
+                <span className="hover:text-white cursor-pointer">📸</span>
+                <span className="hover:text-white cursor-pointer">🔗</span>
               </div>
-
-              {/* Business Hours */}
-              <div className="pt-4 border-t border-white/5">
-                <p className="text-gray-500 text-xs">
-                  <span className="text-gray-400 font-medium">Response Time:</span>
-                  <br />
-                  <span className="text-gray-500">Within 24 hours</span>
-                </p>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
-
-        {/* Bottom Footer */}
-        <motion.div
-          className="border-t border-white/5 pt-6 pb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
-            <p className="text-gray-500 text-sm text-center md:text-left">
-              © {currentYear} Traavel Bug. All Rights Reserved.
-            </p>
-
-            {/* Legal Links */}
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-              <Link 
-                href="/privacy-policy" 
-                className="text-gray-500 hover:text-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
-              >
-                Privacy Policy
-              </Link>
-              <span className="text-gray-700">|</span>
-              <Link 
-                href="/terms" 
-                className="text-gray-500 hover:text-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
-              >
-                Terms & Conditions
-              </Link>
-              <span className="text-gray-700">|</span>
-              <Link 
-                href="/disclaimer" 
-                className="text-gray-500 hover:text-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
-              >
-                Disclaimer
-              </Link>
-            </div>
-          </div>
-
-          {/* Disclaimer */}
-          <div className="mt-4 pt-4 border-t border-white/5">
-            <div className="flex items-start gap-2 text-gray-600 text-xs leading-relaxed">
-              <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-primary/50" />
-              <p>
-                Traavel Bug provides visa assistance and application guidance. 
-                Visa approval is solely at the discretion of the respective embassy, 
-                consulate or immigration authority.
-              </p>
-            </div>
-          </div>
-
-          {/* Back to Top */}
-          <motion.button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="absolute right-8 bottom-8 lg:bottom-12 w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300 hover:scale-110 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary/50"
-            aria-label="Back to top"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            whileHover={{ y: -2 }}
-          >
-            <ArrowUpRight className="w-4 h-4 rotate-[-45deg]" />
-          </motion.button>
-        </motion.div>
+        <div className="py-4 text-center text-sm text-gray-400">
+          © 2026 Traavel Bug. All rights reserved.
+        </div>
       </Container>
-    </footer>
+    </footer>  // ← Make sure this is </footer> not </section>
   );
 }
