@@ -14,10 +14,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  output: 'standalone',
-  experimental: {
-    optimizeCss: true,
-  },
 };
 
 export default nextConfig;
