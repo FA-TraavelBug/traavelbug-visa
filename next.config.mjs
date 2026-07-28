@@ -8,14 +8,12 @@ const nextConfig = {
       },
     ],
   },
-  // ⚠️ Temporarily ignore build errors for deployment
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Disable prerendering for error pages
   output: 'standalone',
   experimental: {
     optimizeCss: true,
