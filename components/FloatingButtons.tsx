@@ -2,7 +2,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, Phone, X, ChevronUp, HelpCircle } from "lucide-react";
+import { MessageCircle, Phone, X, ChevronUp } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function FloatingButtons() {
@@ -22,28 +22,28 @@ export function FloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* WhatsApp Button (Always Visible) */}
+    <>
+      {/* WhatsApp - Always Visible */}
       <motion.a
         href="https://wa.me/917290001545"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+        className="fixed bottom-24 right-6 z-50 flex items-center gap-3 bg-[#25D366] hover:bg-[#20b85f] text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         <MessageCircle className="w-5 h-5" />
-        <span className="text-sm font-medium hidden sm:inline">Chat on WhatsApp</span>
-        <span className="relative flex h-3 w-3">
+        <span className="text-sm font-medium hidden sm:inline">WhatsApp</span>
+        <span className="relative flex h-2.5 w-2.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-300"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-300"></span>
         </span>
       </motion.a>
 
       {/* Call Button */}
       <motion.a
         href="tel:01141033588"
-        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+        className="fixed bottom-36 right-6 z-50 flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -51,7 +51,7 @@ export function FloatingButtons() {
         <span className="text-sm font-medium hidden sm:inline">Call Now</span>
       </motion.a>
 
-      {/* Scroll to Top Button */}
+      {/* Scroll to Top */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
@@ -59,7 +59,7 @@ export function FloatingButtons() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             onClick={scrollToTop}
-            className="bg-white hover:bg-light-bg text-dark-text p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-border/50"
+            className="fixed bottom-6 right-6 z-50 bg-white hover:bg-gray-50 text-dark-text p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-border/50"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Scroll to top"
@@ -68,6 +68,6 @@ export function FloatingButtons() {
           </motion.button>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }
