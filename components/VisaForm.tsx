@@ -1,4 +1,4 @@
-// src/components/VisaForm.tsx
+// components/VisaForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -119,7 +119,6 @@ export function VisaForm({ className, onSuccess }: VisaFormProps) {
     handleSubmit,
     formState: { errors, isDirty, isValid },
     reset,
-    watch,
   } = useForm<VisaFormData>({
     resolver: zodResolver(visaFormSchema),
     mode: "onChange",
