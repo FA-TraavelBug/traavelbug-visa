@@ -1,7 +1,8 @@
 // app/not-found.tsx
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Home, Search, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
@@ -29,10 +30,10 @@ export default function NotFound() {
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/">
-              <Button className="gap-2">
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
                 <Home className="w-4 h-4" />
                 Return Home
-              </Button>
+              </button>
             </Link>
             <button
               onClick={() => window.history.back()}

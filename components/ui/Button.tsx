@@ -3,8 +3,10 @@
 
 import { cn } from "@/lib/utils";
 import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+
+type MotionButtonProps = Omit<HTMLMotionProps<"button">, "onDrag" | "onDragStart" | "onDragEnd">;
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
