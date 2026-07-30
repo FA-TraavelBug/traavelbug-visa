@@ -14,9 +14,9 @@ interface LogoProps {
 
 export function Logo({ className, showText = true, size = "md", variant = "dark" }: LogoProps) {
   const sizes = {
-    sm: { container: "w-8 h-8", text: "text-base" },
-    md: { container: "w-10 h-10", text: "text-xl" },
-    lg: { container: "w-12 h-12", text: "text-2xl" },
+    sm: { container: "w-8 h-8", text: "text-base", icon: 32 },
+    md: { container: "w-10 h-10", text: "text-xl", icon: 40 },
+    lg: { container: "w-12 h-12", text: "text-2xl", icon: 48 },
   };
 
   const textColor = variant === "light" ? "text-white" : "text-dark-text";
@@ -24,17 +24,18 @@ export function Logo({ className, showText = true, size = "md", variant = "dark"
 
   return (
     <Link href="/" className={cn("inline-flex items-center gap-2 group", className)}>
-      {/* Logo Image */}
+      {/* Logo Image - Removed bg-primary and added transparent background */}
       <div className={cn(
-        "relative rounded-xl overflow-hidden bg-primary flex items-center justify-center",
+        "relative rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0",
         sizes[size].container
       )}>
         <Image
           src="/logo.png"
           alt="Traavel Bug"
-          width={40}
-          height={40}
+          width={sizes[size].icon}
+          height={sizes[size].icon}
           className="object-contain"
+          priority
         />
       </div>
       
