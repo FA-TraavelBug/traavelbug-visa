@@ -34,8 +34,15 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const scrollToForm = () => {
+    const element = document.getElementById("home");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <Section id="how-it-works" className="relative overflow-hidden">
+    <Section id="how-it-works" className="relative overflow-hidden py-16 md:py-20">
       {/* Background Decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-20 w-[400px] h-[400px] bg-primary/3 rounded-full blur-3xl" />
@@ -100,7 +107,6 @@ export function HowItWorks() {
                 <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <step.icon className="w-10 h-10" />
                 </div>
-                {/* Glow Effect */}
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.color} opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300`} />
               </div>
 
@@ -111,7 +117,6 @@ export function HowItWorks() {
                 {step.description}
               </p>
 
-              {/* Arrow indicator (mobile) */}
               {index < steps.length - 1 && (
                 <div className="lg:hidden mt-4 text-muted-text/30">
                   <ArrowRight className="w-5 h-5 mx-auto rotate-90" />
@@ -132,13 +137,13 @@ export function HowItWorks() {
           <p className="text-muted-text mb-4">
             Ready to start your journey?
           </p>
-          <a
-            href="#services"
+          <button
+            onClick={scrollToForm}
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300 group"
           >
             <span>Get started now</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </a>
+          </button>
         </motion.div>
       </Container>
     </Section>

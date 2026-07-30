@@ -6,11 +6,18 @@ import { Container } from "./ui/Container";
 import { Section } from "./ui/Section";
 import Button from "./ui/Button";
 import { VisaForm } from "./VisaForm";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { CheckCircle, MessageCircle } from "lucide-react";
 
 export function Hero() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <Section className="min-h-screen flex items-center pt-16 relative overflow-hidden" id="services">
+    <Section className="min-h-screen flex items-center pt-16 relative overflow-hidden" id="home">
       {/* Background Decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
@@ -75,7 +82,7 @@ export function Hero() {
                 "Dedicated Support",
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -86,13 +93,23 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap items-center gap-4"
             >
-              <Button size="lg" className="gap-2 shadow-lg shadow-primary/25">
+              <Button 
+                onClick={() => scrollToSection("services")}
+                size="lg"
+                className="shadow-lg shadow-primary/25 hover:shadow-primary/35"
+              >
                 Get Visa Assistance
-                <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button 
+                variant="outline" 
+                size="lg"
+                href="https://wa.me/917290001545"
+                target="_blank"
+                icon={<MessageCircle className="w-5 h-5" />}
+                iconPosition="left"
+              >
                 Chat on WhatsApp
               </Button>
             </motion.div>
@@ -126,6 +143,7 @@ export function Hero() {
                   Fill in your details and we'll get back to you within 24 hours.
                 </p>
                 
+                {/* VisaForm Component */}
                 <VisaForm />
               </div>
             </div>

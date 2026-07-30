@@ -1,47 +1,77 @@
-// src/components/CookieConsent.tsx
+// components/CookieConsent.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Cookie, 
-  Check, 
-  X, 
-  Shield, 
-  ChevronDown,
-  ChevronUp,
-  Settings
-} from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { 
-  getConsent, 
-  setConsent, 
-  needsConsent,
-  updateGTMConsent,
-  ConsentPreferences 
-} from '@/lib/analytics/consent';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Cookie, Check, X, Shield, ChevronDown, ChevronUp, Settings } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+type ConsentPreferences = {
+  essential: boolean;
+  analytics: boolean;
+  marketing: boolean;
+  preferences: boolean;
+};
+
+const defaultConsent: ConsentPreferences = {
+  essential: true,
+  analytics: false,
+  marketing: false,
+  preferences: false,
+};
+
+const CONSENT_KEY = 'traavel_bug_consent';
+
+const getConsent = (): ConsentPreferences => {
+  if (typeof window === 'undefined') return defaultConsent;
+  try {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (stored) {
+      return { ...defaultConsent, ...JSON.parse(stored) };
+    }
+  } catch (error) {
+    console.error('Failed to parse consent:', error);
+  }
+  return defaultConsent;
+};
+
+const setConsent = (preferences: Partial<ConsentPreferences>) => {
+  if (typeof window === 'undefined') return;
+  const current = getConsent();
+  const updated = { ...current, ...preferences };
+  try {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(updated));
+  } catch (error) {
+    console.error('Failed to save consent:', error);
+  }
+};
+
+const needsConsent = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return !localStorage.getItem(CONSENT_KEY);
+};
 
 const consentOptions = [
   {
-    id: 'essential',
+    id: 'essential' as keyof ConsentPreferences,
     label: 'Essential Cookies',
     description: 'Necessary for the website to function properly.',
     required: true,
   },
   {
-    id: 'analytics',
+    id: 'analytics' as keyof ConsentPreferences,
     label: 'Analytics Cookies',
     description: 'Help us understand how visitors interact with our website.',
     required: false,
   },
   {
-    id: 'marketing',
+    id: 'marketing' as keyof ConsentPreferences,
     label: 'Marketing Cookies',
     description: 'Used to deliver relevant ads and track campaign performance.',
     required: false,
   },
   {
-    id: 'preferences',
+    id: 'preferences' as keyof ConsentPreferences,
     label: 'Preference Cookies',
     description: 'Remember your preferences and settings.',
     required: false,
@@ -59,7 +89,6 @@ export function CookieConsent() {
   });
 
   useEffect(() => {
-    // Check if consent is needed
     if (needsConsent()) {
       setShowBanner(true);
     }
@@ -72,7 +101,18 @@ export function CookieConsent() {
       marketing: true,
       preferences: true,
     };
-    saveConsent(allPreferences);
+    setConsent(allPreferences);
+    setShowBanner(false);
+    // Initialize analytics
+    if (typeof window !== 'undefined') {
+      // @ts-ignore
+      if (window.gtag) window.gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'granted',
+      });
+      // @ts-ignore
+      if (window.fbq) window.fbq('consent', 'grant');
+    }
   };
 
   const handleRejectAll = () => {
@@ -82,7 +122,17 @@ export function CookieConsent() {
       marketing: false,
       preferences: false,
     };
-    saveConsent(minimalPreferences);
+    setConsent(minimalPreferences);
+    setShowBanner(false);
+    if (typeof window !== 'undefined') {
+      // @ts-ignore
+      if (window.gtag) window.gtag('consent', 'update', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+      });
+      // @ts-ignore
+      if (window.fbq) window.fbq('consent', 'revoke');
+    }
   };
 
   const handleSavePreferences = () => {
@@ -92,21 +142,22 @@ export function CookieConsent() {
       marketing: preferences.marketing || false,
       preferences: preferences.preferences || false,
     };
-    saveConsent(finalPreferences);
-  };
-
-  const saveConsent = (preferences: ConsentPreferences) => {
-    setConsent(preferences);
-    updateGTMConsent(preferences);
+    setConsent(finalPreferences);
     setShowBanner(false);
-    
-    // Initialize analytics if consent is given
-    if (preferences.analytics) {
-      // Initialize analytics scripts
-      const script = document.createElement('script');
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-      script.async = true;
-      document.head.appendChild(script);
+    if (typeof window !== 'undefined') {
+      // @ts-ignore
+      if (window.gtag) window.gtag('consent', 'update', {
+        'analytics_storage': finalPreferences.analytics ? 'granted' : 'denied',
+        'ad_storage': finalPreferences.marketing ? 'granted' : 'denied',
+      });
+      // @ts-ignore
+      if (window.fbq) {
+        if (finalPreferences.marketing) {
+          window.fbq('consent', 'grant');
+        } else {
+          window.fbq('consent', 'revoke');
+        }
+      }
     }
   };
 
@@ -150,7 +201,6 @@ export function CookieConsent() {
                     and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
                   </p>
                   
-                  {/* Details Toggle */}
                   <button
                     onClick={() => setShowDetails(!showDetails)}
                     className="flex items-center gap-1.5 text-sm text-primary font-medium mt-3 hover:text-primary/80 transition-colors duration-200"
@@ -188,20 +238,20 @@ export function CookieConsent() {
                           )}
                         >
                           <button
-                            onClick={() => togglePreference(option.id as keyof ConsentPreferences)}
+                            onClick={() => togglePreference(option.id)}
                             disabled={option.required}
                             className={cn(
                               "flex-shrink-0 w-5 h-5 rounded border-2 mt-0.5",
                               "flex items-center justify-center",
                               "transition-all duration-200",
-                              preferences[option.id as keyof ConsentPreferences]
+                              preferences[option.id]
                                 ? "bg-primary border-primary"
                                 : "bg-white border-border",
                               option.required && "cursor-not-allowed"
                             )}
                             aria-label={`Toggle ${option.label}`}
                           >
-                            {preferences[option.id as keyof ConsentPreferences] && (
+                            {preferences[option.id] && (
                               <Check className="w-3 h-3 text-white" />
                             )}
                           </button>

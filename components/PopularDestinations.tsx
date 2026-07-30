@@ -4,7 +4,15 @@
 import { motion } from "framer-motion";
 import { Container } from "./ui/Container";
 import { Section } from "./ui/Section";
-import { MapPin, Plane, ChevronRight, Star, Sparkles, TrendingUp } from "lucide-react";
+import { 
+  MapPin, 
+  Plane, 
+  ChevronRight, 
+  Star, 
+  Sparkles, 
+  TrendingUp,
+  CheckCircle
+} from "lucide-react";
 
 const destinations = [
   { 
@@ -99,8 +107,16 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 export function PopularDestinations() {
+  const scrollToForm = () => {
+    // Scroll to Hero section where the form is
+    const element = document.getElementById("home");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <Section background="light" id="destinations" className="relative overflow-hidden">
+    <Section background="light" id="destinations" className="relative overflow-hidden py-16 md:py-20">
       {/* Background Decorations */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-20 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
@@ -144,29 +160,26 @@ export function PopularDestinations() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {destinations.map((dest, index) => (
             <motion.div
               key={index}
-              className="group relative p-6 bg-white rounded-2xl border border-border/50 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-              initial={{ opacity: 0, y: 30 }}
+              className="group relative p-5 bg-white rounded-xl border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 * index }}
-              whileHover={{ scale: 1.02 }}
             >
-              {/* Gradient Background on Hover */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative">
-                {/* Top Row - Flag + Popularity */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-4xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                       {dest.flag}
                     </span>
                     <div>
-                      <h3 className="text-lg font-heading font-semibold text-dark-text group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-base font-heading font-semibold text-dark-text group-hover:text-primary transition-colors duration-300">
                         {dest.name}
                       </h3>
                       <p className="text-xs text-muted-text">{dest.country}</p>
@@ -178,19 +191,19 @@ export function PopularDestinations() {
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-muted-text text-sm leading-relaxed mb-4 min-h-[40px]">
+                <p className="text-muted-text text-sm leading-relaxed mb-3 min-h-[36px]">
                   {dest.description}
                 </p>
 
-                {/* Rating */}
-                <div className="mb-4">
+                <div className="mb-3">
                   <StarRating rating={dest.rating} />
                   <span className="text-xs text-muted-text ml-1">({dest.reviews} reviews)</span>
                 </div>
 
-                {/* CTA Button */}
-                <button className="inline-flex items-center justify-between w-full px-4 py-2.5 bg-light-bg text-dark-text rounded-lg border border-border/50 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary/50 group-hover:shadow-lg group-hover:shadow-primary/25 text-sm font-medium">
+                <button
+                  onClick={scrollToForm}
+                  className="inline-flex items-center justify-between w-full px-3.5 py-2 bg-light-bg text-dark-text rounded-lg border border-border/50 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary/50 group-hover:shadow-lg group-hover:shadow-primary/25 text-sm font-medium"
+                >
                   <span>Get Visa Assistance</span>
                   <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
@@ -199,24 +212,22 @@ export function PopularDestinations() {
           ))}
         </div>
 
-        {/* CTA Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="mt-12 relative overflow-hidden rounded-2xl"
+          className="mt-10 relative overflow-hidden rounded-xl"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/90" />
           
-          {/* Decorative Elements */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-white rounded-full blur-3xl" />
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-accent rounded-full blur-3xl" />
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
           </div>
 
-          <div className="relative p-8 md:p-10 lg:p-12 text-center text-white">
+          <div className="relative p-8 md:p-10 text-center text-white">
             <h3 className="text-2xl md:text-3xl font-heading font-bold mb-2">
               Can't Find Your Destination?
             </h3>
@@ -224,13 +235,13 @@ export function PopularDestinations() {
               We provide visa assistance for many international destinations. 
               Get in touch and we'll help you with your travel plans.
             </p>
-            <a
-              href="#services"
+            <button
+              onClick={scrollToForm}
               className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary rounded-lg font-medium hover:bg-white/90 transition-all shadow-lg shadow-black/20 hover:shadow-black/30"
             >
               Contact Our Team
               <ChevronRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </motion.div>
       </Container>

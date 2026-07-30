@@ -41,6 +41,13 @@ const trustItems = [
 ];
 
 export function FinalCTA() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <Section background="white" padding="large" className="relative overflow-hidden">
       {/* Premium Gradient Background */}
@@ -51,7 +58,6 @@ export function FinalCTA() {
         <div className="absolute -top-1/2 -right-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute -bottom-1/2 -left-1/2 w-[800px] h-[800px] bg-white/10 rounded-full blur-3xl animate-pulse delay-1000" />
         
-        {/* Floating Abstract Shapes */}
         <motion.div
           className="absolute top-20 left-20 w-64 h-64 border border-white/10 rounded-full"
           animate={{
@@ -78,13 +84,6 @@ export function FinalCTA() {
           }}
         />
         
-        {/* Decorative Dots */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent/30 rounded-full animate-ping" />
-        <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-white/20 rounded-full animate-ping delay-300" />
-        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-accent/20 rounded-full animate-ping delay-700" />
-        <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-white/20 rounded-full animate-ping delay-500" />
-
-        {/* Grid Pattern Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
@@ -146,19 +145,20 @@ export function FinalCTA() {
             transition={{ delay: 0.15 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
           >
-            <a
-              href="#services"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-lg font-medium hover:bg-white/90 transition-all shadow-2xl shadow-black/20 hover:shadow-black/30 group text-base w-full sm:w-auto"
+            <button
+              onClick={() => scrollToSection("services")}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary rounded-lg font-medium hover:bg-white/90 transition-all shadow-2xl shadow-black/20 hover:shadow-black/30 group text-base w-full sm:w-auto"
             >
               <Phone className="w-5 h-5" />
               Get Visa Assistance
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            </button>
+            
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/917290001545"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white rounded-lg font-medium hover:bg-white/10 transition-all backdrop-blur-sm w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-lg font-medium hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-sm w-full sm:w-auto"
             >
               <MessageCircle className="w-5 h-5" />
               Chat on WhatsApp
@@ -181,16 +181,12 @@ export function FinalCTA() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 + index * 0.05, duration: 0.5 }}
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-accent group-hover:bg-white/20 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-accent">
                   <item.icon className="w-5 h-5" />
                 </div>
                 <div className="text-center">
-                  <p className="text-white font-medium text-sm">
-                    {item.title}
-                  </p>
-                  <p className="text-white/50 text-xs">
-                    {item.subtitle}
-                  </p>
+                  <p className="text-white font-medium text-sm">{item.title}</p>
+                  <p className="text-white/50 text-xs">{item.subtitle}</p>
                 </div>
               </motion.div>
             ))}
