@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Globe } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -14,21 +14,9 @@ interface LogoProps {
 
 export function Logo({ className, showText = true, size = "md", variant = "dark" }: LogoProps) {
   const sizes = {
-    sm: {
-      container: "w-8 h-8",
-      icon: "w-4 h-4",
-      text: "text-base",
-    },
-    md: {
-      container: "w-10 h-10",
-      icon: "w-5 h-5",
-      text: "text-xl",
-    },
-    lg: {
-      container: "w-12 h-12",
-      icon: "w-6 h-6",
-      text: "text-2xl",
-    },
+    sm: { container: "w-8 h-8", text: "text-base" },
+    md: { container: "w-10 h-10", text: "text-xl" },
+    lg: { container: "w-12 h-12", text: "text-2xl" },
   };
 
   const textColor = variant === "light" ? "text-white" : "text-dark-text";
@@ -36,14 +24,18 @@ export function Logo({ className, showText = true, size = "md", variant = "dark"
 
   return (
     <Link href="/" className={cn("inline-flex items-center gap-2 group", className)}>
+      {/* Logo Image */}
       <div className={cn(
-        "relative rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105",
+        "relative rounded-xl overflow-hidden bg-primary flex items-center justify-center",
         sizes[size].container
       )}>
-        <Globe className={cn("text-white", sizes[size].icon)} />
-        
-        {/* Decorative ring on hover */}
-        <div className="absolute inset-0 rounded-xl border-2 border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <Image
+          src="/logo.png"
+          alt="Traavel Bug"
+          width={40}
+          height={40}
+          className="object-contain"
+        />
       </div>
       
       {showText && (
