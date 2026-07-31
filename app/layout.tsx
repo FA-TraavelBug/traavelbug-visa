@@ -4,6 +4,7 @@ import { Inter, Poppins } from "next/font/google";
 import Script from "next/script";
 import { Navbar } from "@/components/Navbar";
 import { CookieConsent } from "@/components/CookieConsent";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import "./globals.css";
 
 const inter = Inter({
@@ -70,7 +71,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Favicon - All sizes */}
+        {/* Favicon */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -81,12 +82,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#214696" />
       </head>
       <body className="antialiased">
-        {/* ✅ NAVBAR - This was missing! */}
+        <ScrollProgress />
         <Navbar />
-        
-        {/* Page Content */}
         {children}
-        
         <CookieConsent />
 
         {/* GTM (Head) */}
