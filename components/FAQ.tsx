@@ -242,7 +242,7 @@ export function FAQ() {
                 Get Visa Assistance
               </a>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/+91 72900 01545"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3 border border-white/30 text-white rounded-lg font-medium hover:bg-white/10 transition-all"
