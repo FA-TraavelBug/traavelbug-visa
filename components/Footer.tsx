@@ -14,9 +14,11 @@ import {
   Globe,
   ArrowUpRight,
   Shield,
-  Clock
+  Clock,
+  AlertCircle
 } from "lucide-react";
 import { Container } from "./ui/Container";
+import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 
 interface SocialIconProps {
@@ -105,23 +107,7 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <Link 
-                href="/" 
-                className="inline-flex items-center gap-2 group"
-                aria-label="Traavel Bug Home"
-              >
-                <div className="relative w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-                  <Globe className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <span className="font-heading font-bold text-xl tracking-tight text-white">
-                    Traavel
-                  </span>
-                  <span className="font-heading font-bold text-xl tracking-tight text-primary">
-                    Bug
-                  </span>
-                </div>
-              </Link>
+              <Logo variant="light" showText={true} size="sm" />
 
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 Traavel Bug provides personalised visa assistance and travel planning 
@@ -299,14 +285,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Disclaimer */}
+          {/* ✅ GOOGLE ADS DISCLAIMER */}
           <div className="mt-4 pt-4 border-t border-white/5">
             <div className="flex items-start gap-2 text-gray-600 text-xs leading-relaxed">
-              <Shield className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-primary/50" />
+              <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-primary/50" />
               <p>
-                Traavel Bug provides visa assistance and application guidance. 
-                Visa approval is solely at the discretion of the respective embassy, 
-                consulate or immigration authority.
+                <strong>Disclaimer:</strong> Traavel Bug is a private consultancy. 
+                We provide guidance and document review only. 
+                Visa approval is at embassy's discretion.
               </p>
             </div>
           </div>

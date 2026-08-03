@@ -6,7 +6,7 @@ import { Container } from "./ui/Container";
 import { Section } from "./ui/Section";
 import Button from "./ui/Button";
 import { VisaForm } from "./VisaForm";
-import { CheckCircle, MessageCircle } from "lucide-react";
+import { CheckCircle, MessageCircle, AlertCircle } from "lucide-react";
 
 export function Hero() {
   const scrollToSection = (id: string) => {
@@ -123,6 +123,23 @@ export function Hero() {
               <CheckCircle className="w-4 h-4 text-primary" />
               Helping travellers with international visa assistance.
             </motion.p>
+
+            {/* ✅ GOOGLE ADS DISCLAIMER */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="mt-6 p-3 bg-primary/5 rounded-lg border border-primary/10"
+            >
+              <div className="flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-muted-text leading-relaxed">
+                  <strong>Disclaimer:</strong> Traavel Bug is a private consultancy. 
+                  We provide guidance and document review only. 
+                  Visa approval is at embassy's discretion.
+                </p>
+              </div>
+            </motion.div>
           </div>
 
           {/* Right Column - Form */}
@@ -143,7 +160,6 @@ export function Hero() {
                   Fill in your details and we'll get back to you within 24 hours.
                 </p>
                 
-                {/* VisaForm Component */}
                 <VisaForm />
               </div>
             </div>

@@ -503,6 +503,14 @@ export function VisaForm({ className, onSuccess }: VisaFormProps) {
             )}
           </AnimatePresence>
 
+          {/* ✅ GOOGLE ADS DISCLAIMER */}
+          <div className="p-2.5 bg-light-bg rounded-lg border border-border/50">
+            <p className="text-[10px] text-muted-text leading-relaxed">
+              <strong>Disclaimer:</strong> We provide guidance and document review only. 
+              Visa approval is at embassy's discretion.
+            </p>
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"

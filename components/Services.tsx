@@ -12,7 +12,8 @@ import {
   Building2,
   Globe,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  AlertCircle
 } from "lucide-react";
 
 const serviceCategories = [
@@ -51,6 +52,13 @@ const serviceCategories = [
 export function Services() {
   return (
     <Section background="light" id="services" className="relative overflow-hidden py-16 md:py-20">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 -left-20 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -right-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(33,70,150,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(33,70,150,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      </div>
+
       <Container>
         <div className="text-center max-w-3xl mx-auto mb-12">
           <motion.div
@@ -115,6 +123,27 @@ export function Services() {
             </motion.div>
           ))}
         </div>
+
+        {/* ✅ GOOGLE ADS DISCLAIMER */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="mt-10 p-4 bg-white rounded-xl border border-primary/10"
+        >
+          <div className="flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-medium text-dark-text">Important Notice</p>
+              <p className="text-xs text-muted-text">
+                <strong>Disclaimer:</strong> Traavel Bug provides visa guidance and document review only. 
+                We do not guarantee visa approval. All visa decisions are made by the respective embassy 
+                or immigration authority.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </Container>
     </Section>
   );
