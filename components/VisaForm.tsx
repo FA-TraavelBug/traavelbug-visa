@@ -133,6 +133,15 @@ export function VisaForm({ className, onSuccess }: VisaFormProps) {
     },
   });
 
+  // ✅ Track Google Ads Conversion
+  const trackConversion = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag('event', 'form_start', {
+        // Google will automatically use the conversion ID from your setup
+      });
+    }
+  };
+
   const onSubmit = async (data: VisaFormData) => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -156,6 +165,10 @@ export function VisaForm({ className, onSuccess }: VisaFormProps) {
       setSubmitStatus('success');
       reset();
       onSuccess?.();
+      
+      // ✅ Track conversion on successful form submission
+      trackConversion();
+      
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
