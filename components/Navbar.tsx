@@ -97,7 +97,7 @@ export function Navbar() {
               variant="outline" 
               size="sm"
               className="gap-2"
-              href="tel:01141033588"
+              href="tel:9711144428"
             >
               <Phone className="w-4 h-4" />
               Call Now
@@ -106,7 +106,7 @@ export function Navbar() {
               variant="primary" 
               size="sm"
               className="gap-2 bg-[#25D366] hover:bg-[#20b85f] shadow-lg shadow-[#25D366]/25 hover:shadow-[#25D366]/35"
-              href="https://wa.me/917290001545"
+              href="https://wa.me/919711144428"
               target="_blank"
             >
               <MessageCircle className="w-4 h-4" />
@@ -181,7 +181,7 @@ export function Navbar() {
                     variant="primary" 
                     fullWidth
                     className="gap-2 text-base py-4"
-                    href="tel:01141033588"
+                    href="tel:9711144428"
                   >
                     <Phone className="w-5 h-5" />
                     Call Now
@@ -190,7 +190,7 @@ export function Navbar() {
                     variant="outline" 
                     fullWidth
                     className="gap-2 text-base py-4 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white"
-                    href="https://wa.me/917290001545"
+                    href="https://wa.me/919711144428"
                     target="_blank"
                   >
                     <MessageCircle className="w-5 h-5" />

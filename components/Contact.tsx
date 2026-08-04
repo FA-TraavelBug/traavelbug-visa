@@ -19,17 +19,17 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Call Us",
-    details: "+91 72900 01545",
-    sub: "+91 97111 44428",
-    action: "tel:+91 72900 01545",
+    details: "+91 97111 44428",
+    sub: "+91 72900 01545",
+    action: "tel:9711144428",
     color: "from-blue-500 to-blue-600"
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    details: "+91 72900 01545",
+    details: "+91 97111 44428",
     sub: "Chat with us",
-    action: "https://wa.me/917290001545",
+    action: "https://wa.me/919711144428",
     color: "from-green-500 to-green-600"
   },
   {
@@ -185,7 +185,10 @@ export function Contact() {
             </div>
             <div className="mt-4 pt-4 border-t border-border/50">
               <p className="text-xs text-muted-text">
-                📧 sm@traavelbug.com • 📞 +91 72900 01545
+                📞 +91 97111 44428 • +91 72900 01545
+              </p>
+              <p className="text-xs text-muted-text mt-1">
+                📧 sm@traavelbug.com
               </p>
             </div>
           </motion.div>

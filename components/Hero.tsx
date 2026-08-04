@@ -105,7 +105,7 @@ export function Hero() {
               <Button 
                 variant="outline" 
                 size="lg"
-                href="https://wa.me/917290001545"
+                href="https://wa.me/919711144428"
                 target="_blank"
                 icon={<MessageCircle className="w-5 h-5" />}
                 iconPosition="left"
@@ -124,7 +124,7 @@ export function Hero() {
               Helping travellers with international visa assistance.
             </motion.p>
 
-            {/* ✅ GOOGLE ADS DISCLAIMER */}
+            {/* Google Ads Disclaimer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
