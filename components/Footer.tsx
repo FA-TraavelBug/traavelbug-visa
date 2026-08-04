@@ -169,9 +169,10 @@ export function Footer() {
                 Contact
               </h3>
               <ul className="space-y-3">
+                {/* ✅ Phone 1: 7290001545 */}
                 <li>
                   <a
-                    href="tel:+91 72900 01545"
+                    href="tel:7290001545"
                     className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300 text-sm group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
                   >
                     <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
@@ -180,6 +181,19 @@ export function Footer() {
                     <span>+91 72900 01545</span>
                   </a>
                 </li>
+                {/* ✅ Phone 2: 9711144428 */}
+                <li>
+                  <a
+                    href="tel:9711144428"
+                    className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300 text-sm group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 flex-shrink-0">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span>+91 97111 44428</span>
+                  </a>
+                </li>
+                {/* Email */}
                 <li>
                   <a
                     href="mailto:sm@traavelbug.com"
@@ -191,6 +205,7 @@ export function Footer() {
                     <span>sm@traavelbug.com</span>
                   </a>
                 </li>
+                {/* Address */}
                 <li className="flex items-start gap-3 text-gray-400 text-sm">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <MapPin className="w-4 h-4" />
@@ -201,6 +216,7 @@ export function Footer() {
                     New Delhi – 110024
                   </span>
                 </li>
+                {/* Working Hours */}
                 <li className="flex items-start gap-3 text-gray-400 text-sm">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Clock className="w-4 h-4" />
@@ -285,7 +301,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* ✅ GOOGLE ADS DISCLAIMER */}
+          {/* Disclaimer */}
           <div className="mt-4 pt-4 border-t border-white/5">
             <div className="flex items-start gap-2 text-gray-600 text-xs leading-relaxed">
               <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-primary/50" />

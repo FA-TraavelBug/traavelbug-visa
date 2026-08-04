@@ -20,7 +20,7 @@ const contactInfo = [
     icon: Phone,
     title: "Call Us",
     details: "+91 72900 01545",
-    sub: "+91 99109 99396",
+    sub: "+91 97111 44428",
     action: "tel:+91 72900 01545",
     color: "from-blue-500 to-blue-600"
   },
