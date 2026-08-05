@@ -6,10 +6,10 @@ import { z } from "zod";
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Get all recipient emails from environment
+// ✅ Updated: Added visa@traavelbug.com to recipients
 const recipientEmails = process.env.CONTACT_EMAILS 
   ? process.env.CONTACT_EMAILS.split(',').map(email => email.trim())
-  : ['fa@traavelbug.com', 'sm@traavelbug.com'];
+  : ['fa@traavelbug.com', 'sm@traavelbug.com', 'visa@traavelbug.com'];
 
 // Validation schema
 const contactSchema = z.object({
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     // 📧 SEND EMAIL TO ADMIN (Multiple Recipients)
     await resend.emails.send({
       from: `Traavel Bug <support@mail.traavelbug.com>`,
-      to: recipientEmails, // This sends to both fa@traavelbug.com and sm@traavelbug.com
+      to: recipientEmails,
       subject: `🆕 New Visa Enquiry from ${fullName}`,
       html: `
         <!DOCTYPE html>
